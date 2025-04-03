@@ -7,9 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint && prettier --check .",
-    "generate-schema": "npx gql.tada generate schema https://graphql.datocms.com --header \"X-Exclude-Invalid: true\" --header \"Authorization: 2a3650f553d46f2cbfd2de02e063b1",
+    "generate-schema": "dotenv -c -- bash -c 'gql.tada generate schema https://graphql.datocms.com --header \"X-Exclude-Invalid: true\" --header \"Authorization: $DATOCMS_PUBLISHED_CONTENT_CDA_TOKEN\"'",
     "format": "npx prettier . --write",
-    "prepare": "npx simple-git-hooks; npm run generate-schema"
+    "prepare": "npx simple-git-hooks && npm run generate-schema"
   },
   "dependencies": {
     "@datocms/cda-client": "^0.2.6",
