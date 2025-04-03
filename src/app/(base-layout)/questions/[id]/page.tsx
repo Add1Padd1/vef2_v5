@@ -36,7 +36,10 @@ const query = graphql(
   `,
   [],
 );
-
+interface Question {
+  questionTitle: string;
+  spurning: string;
+}
 export default async function QuestionsPage({
   params,
 }: {
@@ -48,7 +51,7 @@ export default async function QuestionsPage({
   const { id } = await params;
   console.log(id);
 
-  const { question } = await executeQuery(query, { variables: { id } });
+  const { question } = (await executeQuery(query, { variables: { id } })) as { question: Question };
   if (!question) {
     notFound();
   }
