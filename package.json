@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint && prettier --check .",
-    "generate-schema": "dotenv -c -- bash -c 'gql.tada generate schema https://graphql.datocms.com --header \"X-Exclude-Invalid: true\" --header \"Authorization: $DATOCMS_PUBLISHED_CONTENT_CDA_TOKEN\"'",
+    "generate-schema": "npx gql.tada generate schema https://graphql.datocms.com --header \"X-Exclude-Invalid: true\" --header \"Authorization: 2a3650f553d46f2cbfd2de02e063b1",
     "format": "npx prettier . --write",
     "prepare": "npx simple-git-hooks && npm run generate-schema"
   },
@@ -24,16 +24,20 @@
     "react": "^18",
     "react-datocms": "^7.2.2",
     "react-dom": "^18",
-    "serialize-error": "^11.0.3"
+    "serialize-error": "^11.0.3",
+    "uninstall": "^0.0.0"
   },
   "devDependencies": {
     "@types/jsdom": "^21.1.7",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "cross-env": "^7.0.3",
     "dotenv-cli": "^7.4.2",
+    "marked": "^15.0.7",
     "prettier": "3.3.3",
-    "simple-git-hooks": "^2.11.1",
+    "react-markdown": "^10.1.0",
+    "simple-git-hooks": "^2.12.1",
     "typescript": "^5.7.2"
   },
   "simple-git-hooks": {
