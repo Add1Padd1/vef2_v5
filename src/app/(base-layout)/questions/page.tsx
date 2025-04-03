@@ -15,12 +15,29 @@ import { revalidateTag } from 'next/cache';
 export const metadata = {
   title: 'Ýmsar spurningar',
 };
+
+interface Question {
+  id: string;
+  questionTitle: string;
+  spurning: string;
+  flokkur: {
+    title: string;
+  };
+  authors: {
+    name: string;
+  }[];
+}
+
 const query = graphql(
   /* GraphQL */ `
     query Questions {
       allQuestions {
         questionTitle
         id
+        spurning
+        flokkur {
+          title
+        }
         authors {
           name
         }
@@ -32,14 +49,15 @@ const query = graphql(
 
 export default async function QuestionsPage() {
   revalidateTag('datocms');
-  const { allQuestions } = await executeQuery(query, {});
+  // @ts-expect-error
+  const { allQuestions } = await executeQuery<{ allQuestions: Question[] }, {}>(query, {});
   console.log(allQuestions);
   if (!allQuestions) {
     notFound();
   }
   return (
     <>
-      <h3>Hér eru ósvaranlegar spurningar:</h3>
+      <h3>Hér eru spurningar án svara:</h3>
 
       <ul>
         {allQuestions.map((question) => (
